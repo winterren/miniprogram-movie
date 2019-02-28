@@ -58,6 +58,7 @@ Page({
       }
     })
   },
+  // 监听键盘输入
   onInput(event) {
     this.setData({
       commentValue: event.detail.value.trim()
@@ -65,7 +66,7 @@ Page({
   },
   // 录音
   onTapRecord:function(){
-    
+
     if(this.data.recordstatus=='unrecord'){
       recorderManager.start(options)
       recorderManager.onStart(() => {
@@ -83,7 +84,7 @@ Page({
         const { tempFilePath } = res
         this.setData({
           recordstatus: 'unrecord',
-          recordtext: '开始录音',
+          recordtext: '重新录音',
           temprecord: res
         });
       })
