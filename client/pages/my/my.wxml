@@ -31,7 +31,7 @@
         <view class="movie-info__title">{{item.title}}</view>
         <view class="comment">
           <view class="comment--text" wx:if="{{item.type==0}}">{{item.content}}</view>
-          <view class="comment--voice" wx:else>▶ 15s</view>
+          <view class="comment--voice" wx:else>▶ {{item.duration}}s</view>
         </view>
         
         <view class="comment--person">

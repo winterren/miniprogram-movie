@@ -34,10 +34,13 @@ router.post('/message', controllers.message.post)
 
 // 获得电影
 router.get('/movie', controllers.movie.movie)
+// 获得指定电影详情
 router.get('/movie/:id', controllers.movie.detail)
 // 获得评论
 router.get('/comment/:id', controllers.comment.comment)
+// 获得指定评论详情
 router.get('/commentdetail/:id', controllers.comment.commentdetail)
+// 获得随机评论
 router.get('/randomcomment', controllers.comment.randomcomment)
 // 添加评论
 router.put('/addcomment', validationMiddleware, controllers.comment.add)
