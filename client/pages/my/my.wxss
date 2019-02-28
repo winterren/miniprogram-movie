@@ -1,0 +1,75 @@
+/* client/pages/my/my.wxss */
+/* client/pages/movie/movie.wxss */
+/* 内容 */
+.content{
+  width: 660rpx;
+  margin:30rpx auto;
+}
+/* 电影 */
+.movie-list{
+  width: 660rpx;
+  background: #FFF;
+  border: 4rpx solid #eee;
+  display: flex;
+  margin-bottom: 40rpx;
+
+}
+.movie-post{
+  width:200rpx;
+  height: 270rpx;
+  
+}
+.movie-info{
+  width:450rpx;
+  padding: 30rpx 30rpx 0;
+}
+.movie-info__title{
+  font-size: 35rpx;
+  font-weight: bolder;
+  line-height: 48rpx;
+  color: #454545;
+}
+.movie-info__catagory{
+  margin-top: 35rpx;
+  font-size: 25rpx;
+  line-height: 37rpx;
+  color: #454545;
+}
+/* 评论 */
+.comment--person{
+  padding-bottom: 25rpx;
+  display: flex;
+}
+.avatar{
+  display: inline-block;
+  vertical-align: middle;
+  width: 45rpx;
+  height: 45rpx;
+  border-radius: 50%;
+  background: #f5e069;
+}
+.comment__info{
+  margin-left: 18rpx;
+  display: inline-block;
+  font-size: 30rpx;
+  line-height: 45rpx;
+  height: 45rpx;
+  color: #454545;
+}
+.comment{
+  padding: 20rpx 0 30rpx; 
+}
+.comment--text{
+  /* padding: 20rpx 0 30rpx; */
+  font-size: 30rpx;
+  line-height: 44rpx;
+}
+.comment--voice{
+  font-size: 30rpx;
+  line-height: 44rpx;
+  border:1px solid #ccc;
+  background: #eee;
+  border-radius: 10rpx;
+  padding: 10rpx 30rpx;
+  color: #494949;
+}

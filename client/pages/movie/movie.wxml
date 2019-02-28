@@ -1,0 +1,13 @@
+<!--client/pages/movie/movie.wxml-->
+<!-- 背景图 -->
+<image class="bg" src="/images/bg.png"></image>
+<!-- 内容 -->
+<view class="content">
+  <view class="movie-list" wx:for="{{movieList}}" wx:key="index" data-id="{{item.id}}" bindtap='onTapMovie'>
+    <image class="movie-post" src='{{item.image}}'></image>
+    <view class="movie-info">
+      <view class="movie-info__title">{{item.title}}</view>
+      <view class="movie-info__catagory">{{item.category}}</view>
+    </view>
+  </view>  
+</view>

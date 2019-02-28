@@ -1,0 +1,136 @@
+/* 内容 */
+.content{
+  width: 700rpx;
+  margin:20rpx auto;
+  text-align: center;
+}
+.movie-post{
+  width:220rpx;
+  height: 350rpx;
+}
+.movie-title{
+  font-size: 44rpx;
+  /* font-weight: bolder; */
+  line-height: 52rpx;
+  height: 52rpx;
+  padding: 30rpx 0 40rpx;
+  color: #454545;
+}
+.addcomment{
+  width: 605rpx;
+  padding: 0 35rpx;
+  font-size:30rpx;
+  line-height: 45rpx;
+  text-align: left;
+}
+.addcomment__textarea{
+  background: #fff;
+  width: 100%;
+  padding: 15rpx;
+  border: 1px solid #ebebeb;
+}
+.btn--record{
+  margin: 40rpx auto 0;
+}
+.btn--record.unrecord{
+  background: #fff;
+}
+@keyframes myfirst
+{
+0% {background:#FF9999;}
+50%  {background:#CC4444;}
+100% {background:#FF9999;}
+}
+.btn--record.recording{
+  color: #FFF;
+  animation:myfirst 2s;
+  animation-iteration-count: infinite;
+}
+.btn--record.recorded{
+  color: #FFF;
+  background: #44bb44;
+}
+/* 评论部分 */
+.comment{
+  text-align: left;
+  padding: 0 30rpx;
+}
+.comment__block{
+  display: flex;
+  margin-top:35rpx;
+}
+.comment__block__quote{
+  font-weight: 900;
+  font-size: 75rpx;
+  padding: 0 25rpx 0 15rpx ;
+}
+.comment--text{
+  width: 550rpx;
+  font-size: 30rpx;
+  line-height: 44rpx;
+}
+.comment--voice{
+  font-size: 30rpx;
+  line-height: 80rpx;
+  height: 80rpx;
+  width: 400rpx;
+  border:1px solid #ccc;
+  background: #eee;
+  border-radius: 10rpx;
+  padding: 10rpx 30rpx;
+  color: #494949;
+}
+.avatar{
+  display: inline-block;
+  vertical-align: middle;
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+  background: #f5e069;
+}
+.comment__info{
+  margin-left: 20rpx;
+  display: inline-block;
+  font-size:32rpx;
+  line-height: 44rpx; 
+  color: #666;
+}
+.comment__content{
+  
+}
+/* 按钮 */
+.operation{
+  margin-top: 70rpx;
+  display: flex;
+  justify-content: space-around;
+}
+.btn{
+  box-sizing: content-box;
+  color: #bbb;
+  background: #fff;
+  border-radius: 20rpx;
+  border: 2rpx solid #ccc;
+  font-size: 30rpx;
+  line-height:80rpx;
+  width:300rpx;
+  height: 80rpx;
+  /* display: inline-block; */
+}
+
+/* 底部 */
+.foot-tab{
+  border-top:1px solid #fff;
+  height: 80rpx;
+  position: fixed;
+  bottom: 0rpx;
+  background: #00bd00;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+.foot-tab__btn--finish{
+  font-size: 32rpx;
+  line-height: 80rpx;
+  height: 80rpx;
+  color:#fff;
+}

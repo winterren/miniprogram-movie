@@ -1,0 +1,80 @@
+{
+	"client": "client/",
+	"svr": "server/",
+	"miniprogramRoot": "client/",
+	"qcloudRoot": "server/",
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"autoAudits": false
+	},
+	"appid": "wxd08c670d7e914133",
+	"projectname": "xcx-movie",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"miniprogram": {
+			"current": 5,
+			"list": [
+				{
+					"id": 0,
+					"name": "moviedetail",
+					"pathName": "pages/moviedetail/moviedetail",
+					"query": "id=2"
+				},
+				{
+					"id": -1,
+					"name": "movie",
+					"pathName": "pages/movie/movie",
+					"query": ""
+				},
+				{
+					"id": 2,
+					"name": "comment",
+					"pathName": "pages/comment/comment",
+					"query": "id=4"
+				},
+				{
+					"id": 3,
+					"name": "commentdetail",
+					"pathName": "pages/commentdetail/commentdetail",
+					"query": "commentid=2"
+				},
+				{
+					"id": -1,
+					"name": "my",
+					"pathName": "pages/my/my",
+					"query": ""
+				},
+				{
+					"id": 5,
+					"name": "addcomment",
+					"pathName": "pages/addcomment/addcomment",
+					"query": "id=4&type=0"
+				},
+				{
+					"id": -1,
+					"name": "test",
+					"pathName": "pages/test/test",
+					"query": ""
+				}
+			]
+		}
+	}
+}

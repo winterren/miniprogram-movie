@@ -1,0 +1,25 @@
+<!--client/pages/comment/comment.wxml-->
+<!-- 背景图 -->
+<image class="bg" src="/images/bg.png"></image>
+<!-- 推荐内容 -->
+<view class="content">
+  <!-- 没有评论时候 -->
+  <view  wx:if="{{comment.length==0}}">
+    <text>暂无评论</text>
+  </view>
+  <!-- 有评论时候 -->
+  <view class="comment" wx:for="{{comment}}" wx:key="index" data-commentid="{{item.comment_id}}" bindtap="onTapComment">
+    <view class="comment--person">
+      <image class="avatar" src="{{item.avatar}}"></image>
+      <view class="comment__info">{{item.username}}</view>
+    </view>
+    <view class="comment--text" wx:if="{{item.type==0}}">{{item.content}}</view>
+    <view class="comment--voice" wx:else>▶ {{item.duration}}s</view>
+  </view>
+
+</view>
+<view class="footer"></view>
+<!-- 底部导航 -->
+<view class="foot-tab">
+  <view class="foot-tab__btn--home" bindtap="onTapBackHome">回到首页</view>
+</view>

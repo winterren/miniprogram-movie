@@ -1,0 +1,17 @@
+<!--client/pages/moviedetail/moviedetail.wxml-->
+<!-- 背景图 -->
+<image class="bg" src="/images/bg.png"></image>
+<!-- 内容 -->
+<view class="content">
+  <image class="movie-post" src="{{movie.image}}" bindtap='onTapPost'></image>
+  <view class="movie-title">{{movie.title}}</view>
+  <view class="movie-description">
+    {{movie.description}}
+  </view>
+  <!-- 按钮 -->
+  <view class="operation">
+    <view class="btn btn--comment-view" bindtap='onTapComment'>查看影评</view>
+    <view class="btn btn--comment-add"  bindtap='onTapAddComment'>添加影评</view>
+  </view>
+
+</view>

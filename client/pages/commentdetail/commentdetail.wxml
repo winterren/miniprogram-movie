@@ -1,0 +1,27 @@
+<!--client/pages/commentdetail/commentdetail.wxml-->
+<!-- 背景图 -->
+<image class="bg" src="/images/bg.png"></image>
+<!-- 内容 -->
+<view class="content">
+  <!-- 电影 -->
+  <image class="movie-post" src="{{movie.image}}" bindtap='onTapPost'></image>
+  <view class="movie-title">{{movie.title}}</view>
+  <!-- 评论 -->
+  <view class="comment">
+    <image class="avatar" src="{{comment.avatar}}"></image>
+    <view class="comment__info">{{comment.username}}的影评</view>
+    <view class="comment__block">
+      <view class="comment__block__quote">"</view>
+      <view class="comment--text" wx:if="{{comment.type==0}}">{{comment.content}}</view>
+      <view class="comment--voice" wx:else bindtap="onTapPlayVoice">▶ {{comment.duration}}s</view>
+      <audio src="{{src}}" id="myAudio"></audio>
+    </view>
+  </view>
+  <!-- 按钮 -->
+  <view class="operation">
+    <view class="btn btn--comment-view" wx:if="{{isFavourite}}" bindtap='onTapCancelFavourite'>☆ 取消收藏</view>
+    <view class="btn btn--comment-view" wx:else bindtap='onTapFavourite'>★ 收藏影评</view>
+    <view class="btn btn--comment-add" bindtap='onTapAddComment'>✎ 撰写影评</view>
+  </view>
+
+</view>

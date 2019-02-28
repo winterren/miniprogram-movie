@@ -1,0 +1,33 @@
+/* client/pages/movie/movie.wxss */
+/* 内容 */
+.content{
+  width: 660rpx;
+  margin:30rpx auto;
+}
+/* 电影 */
+.movie-list{
+  width: 660rpx;
+  background: #FFF;
+  border: 4rpx solid #eee;
+  display: flex;
+  margin-bottom: 40rpx;
+}
+.movie-post{
+  width:200rpx;
+  height: 270rpx;
+}
+.movie-info{
+  padding: 60rpx 40rpx 0;
+}
+.movie-info__title{
+  font-size: 37rpx;
+  font-weight: bolder;
+  line-height: 52rpx;
+  color: #454545;
+}
+.movie-info__catagory{
+  margin-top: 35rpx;
+  font-size: 25rpx;
+  line-height: 37rpx;
+  color: #454545;
+}

@@ -1,0 +1,17 @@
+<!--pages/index.wxml-->
+<!-- 背景图 -->
+<image class="bg" src="/images/bg.png"></image>
+<!-- 推荐内容 -->
+<view class="content">
+  <image class="movie-post" src="{{movie.image}}" bindtap='onTapPost'></image>
+  <view class="movie-title">{{movie.title}}</view>
+  <view class="recommend" bindtap='onTapComment'>
+    <image class="avatar" src="{{comment[0].avatar}}"></image>
+    <view class="recommend__info">{{comment[0].username}} 给你推荐了一部电影</view>
+  </view>
+</view>
+<!-- 底部导航 -->
+<view class="foot-tab">
+  <view class="foot-tab__btn--hot"  bindtap='onTapHot'>✿ 热门</view>
+  <view class="foot-tab__btn--my"  bindtap='onTapMy'>♟ 我的</view>
+</view>

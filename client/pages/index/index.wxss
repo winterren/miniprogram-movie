@@ -1,0 +1,55 @@
+/* pages/index.wxss */
+
+/* 内容 */
+.content{
+  width: 700rpx;
+  margin:20rpx auto;
+  /* background: olivedrab; */
+  text-align: center;
+}
+.movie-post{
+  width:450rpx;
+  height: 700rpx;
+}
+.movie-title{
+  font-size: 44rpx;
+  /* font-weight: bolder; */
+  line-height: 52rpx;
+  height: 52rpx;
+  padding: 30rpx 0 40rpx;
+  color: #454545;
+}
+/* 推荐语 */
+.recommend{}
+.avatar{
+  display: inline-block;
+  vertical-align: middle;
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+  background: #f5e069;
+}
+.recommend__info{
+  margin-left: 20rpx;
+  display: inline-block;
+  font-size:32rpx;
+  line-height: 44rpx; 
+  color: #666;
+}
+/* 底部导航 */
+.foot-tab{
+  border-top:1px solid #ccc;
+  height: 80rpx;
+  position: fixed;
+  bottom: 0rpx;
+  background: #FFF;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+.foot-tab__btn--hot,.foot-tab__btn--my{
+  font-size: 32rpx;
+  line-height: 80rpx;
+  height: 80rpx;
+  color:#ccc;
+}

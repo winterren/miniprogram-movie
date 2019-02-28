@@ -1,0 +1,49 @@
+<!--client/pages/addcomment/addcomment.wxml-->
+<!-- 背景图 -->
+<image class="bg" src="/images/bg.png"></image>
+
+<!-- 编辑中 -->
+<block wx:if="{{isEditing}}">
+  <!-- 内容 -->
+  <view class="content">
+    <image class="movie-post" src="{{movie.image}}" bindtap='onTapPost'></image>
+    <view class="movie-title">{{movie.title}}</view>
+    <!-- 文字 -->
+    <view class="addcomment" wx:if="{{type==0}}">
+      <textarea class="addcomment__textarea" placeholder="在此输入内容" value="{{commentValue}}" bindinput='onInput' auto-focus maxlength='255' />
+    </view>
+    <!-- 录音 -->
+    <view wx:else>
+      <view class="btn btn--record {{recordstatus}}" bindtap='onTapRecord'>{{recordtext}}</view>
+    </view>
+  </view>
+  <!-- 底部导航 -->
+  <view class="foot-tab">
+    <view class="foot-tab__btn--finish" bindtap="toggleEditing" >完成</view>
+  </view>
+</block>
+
+<!-- 预览中 -->
+<block wx:else>
+  <!-- 内容 -->
+  <view class="content">
+    <image class="movie-post" src="{{movie.image}}" bindtap='onTapPost'></image>
+    <view class="movie-title">{{movie.title}}</view>
+    <!-- 评论 -->
+    <view class="comment">
+      <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
+      <view class="comment__info">{{userInfo.nickName}}的影评</view>
+      <view class="comment__block">
+        <audio src="{{src}}" id="myAudio"></audio>
+        <view class="comment__block__quote">"</view>
+        <view class="comment--text" wx:if="{{type==0}}">{{commentValue}}</view>
+        <view class="comment--voice" wx:else bindtap="onTapPlayTempVoice">▶ {{newRecordDuration}}s</view>
+      </view>
+    </view>
+    <!-- 按钮 -->
+    <view class="operation">
+      <view class="btn btn--comment-view" bindtap='toggleEditing'>重新编辑</view>
+      <view class="btn btn--comment-add"  bindtap='addComment'>发布影评</view>
+    </view>
+  </view>
+</block>
