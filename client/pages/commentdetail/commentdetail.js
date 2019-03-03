@@ -9,7 +9,8 @@ Page({
   data: {
     comment: [],
     movie:[],
-    isFavourite:false
+    isFavourite:false,
+    userscomment:[]
   },
 
   /**
@@ -17,6 +18,8 @@ Page({
    */
   onLoad: function (options) {
     this.audioCtx = wx.createAudioContext('myAudio');
+
+    // 登录
     app.checkSession({
       success: (userInfo) => {
         console.log('1')
@@ -25,29 +28,9 @@ Page({
         console.log(err)
       }
     });
-    // app.checkSession({
-    //   success: ( userInfo ) => {
-    //     console.log(1);
-    //     this.setData({
-    //       userInfo: userInfo
-    //     });
-    //     // 获得影评
-    //     this.getCommentDetail(options.commentid, () => {
-    //       this.getMovieDetail(this.data.comment.id)
-    //       // this.checkFavourite()
-    //     });
-
-    //   },
-    //   error: (err) => {
-    //     console.log(err)
-    //   }
-    // })
     qcloud.setLoginUrl(config.service.loginUrl);
     qcloud.login({
       success: res => {
-        console.log(2);
-        console.log(res.openId);
-
         this.setData({
           userInfo: res
         })
@@ -55,18 +38,46 @@ Page({
         this.getCommentDetail(options.commentid, () => {
           this.getMovieDetail(this.data.comment.id)
           this.checkFavourite()
+          // 查看是否被评论过
+          console.log(this.data.comment)
+          this.checkUsersComment(this.data.comment.id)
         });
+
       },
       fail: res => {
         console.log('fail');
         console.log(res);
       }
-    // console.log(options.commentid);
-    // this.getCommentDetail(options.commentid, () => { 
-    //   this.getMovieDetail(this.data.comment.id)
-    //   this.checkFavourite()
-    });
+    })
 
+
+  },
+  // 查看用户是否对该电影有过评价
+  checkUsersComment(id) {
+    qcloud.request({
+      url: config.service.getUsersComment + id,
+      login: true,
+      success: (res) => {
+        if (!res.data.code) {
+          this.setData({
+            userscomment: res.data.data
+          })
+          console.log(res)
+          console.log(this.data.userscomment);
+        } else {
+          console.log(res);
+        }
+      },
+      fail: function (err) {
+        console.log(err);
+      },
+    });
+  },
+  // 跳转到我的影评
+  onTapMyComment:function(){
+    wx.navigateTo({
+      url: '../commentdetail/commentdetail?commentid=' + this.data.userscomment[0].comment_id,
+    })
   },
   // 获得单个评论
   getCommentDetail(id,callback) {
@@ -164,6 +175,12 @@ Page({
   },
   // 添加评论
   onTapAddComment(res) {
+    // if (this.data.userscomment.length > 0) {
+    //   wx.showToast({
+    //     title: '已经评论过啦',
+    //   })
+    //   return 0;
+    // }
     wx.showActionSheet({
       itemList: ['文字', '语音'], //0,1
       success: (res) => {
@@ -273,52 +290,5 @@ Page({
     })
 
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
+ 
 })

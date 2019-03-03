@@ -11,7 +11,6 @@ const options = {
   frameSize: 50
 }
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -33,6 +32,7 @@ Page({
   onLoad: function (options) {
     this.loadType(options.type);
     this.getMovieDetail(options.id);
+    
     this.audioCtx = wx.createAudioContext('myAudio');
     // 登录
     app.checkSession({
@@ -51,12 +51,34 @@ Page({
         this.setData({
           userInfo: res
         })
+        this.checkUsersComment(this.data.movie.id)
+
       },
       fail: res => {
         console.log('fail');
         console.log(res);
       }
     })
+  },
+  // 查看用户是否对该电影有过评价
+  checkUsersComment(id) {
+    qcloud.request({
+      url: config.service.getUsersComment + id,
+      login: true,
+      success: (res) => {
+        if (!res.data.code) {
+          this.setData({
+            userscomment: res.data.data
+          })
+          console.log(this.data.userscomment.length);
+        } else {
+          console.log(res);
+        }
+      },
+      fail: function (err) {
+        console.log(err);
+      },
+    });
   },
   // 监听键盘输入
   onInput(event) {
@@ -136,10 +158,13 @@ Page({
           })
 
           setTimeout(() => {
-            wx.navigateTo({
-              url: '../comment/comment?id=' + this.data.movie.id,
-            })
+            this.checkUsersComment(this.data.movie.id)
           }, 1500)
+          setTimeout(() => {
+            wx.navigateTo({
+              url: '../commentdetail/commentdetail?commentid=' + this.data.userscomment[0].comment_id,
+            })
+          }, 2500)
         } else {
           wx.showToast({
             icon: 'none',
@@ -200,6 +225,12 @@ Page({
   },
   // 切换编辑状态(上传录音)
   toggleEditing(){
+    if (this.data.userscomment.length>0){
+      wx.showToast({
+        title: '只能评论一次哦',
+      })
+      return 0;
+    }
     if ((this.data.type == 1) && (!this.data.temprecord)){
       wx.showToast({
         title: '请先录音！',
@@ -237,52 +268,4 @@ Page({
     })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

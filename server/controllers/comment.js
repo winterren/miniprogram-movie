@@ -26,6 +26,21 @@ module.exports = {
       ctx.state.data = {}
     }
   },
+  // 读取指定电影和用户的评论
+  userscomment: async ctx => {
+    let user = ctx.state.$wxInfo.userinfo.openId
+    let movieId = ctx.params.id
+    
+    ctx.state.data = (await DB.query("SELECT * FROM m_comment WHERE m_comment.id = ? AND m_comment.user = ?", [movieId, user]))
+
+  },
+  // 指定用户的评论
+  oneuserscomment: async ctx => {
+    let user = ctx.state.$wxInfo.userinfo.openId
+
+    ctx.state.data = (await DB.query("SELECT * FROM m_comment, movie WHERE m_comment.id = movie.id AND m_comment.user = ?", [user]))
+
+  },
   /**
    * 添加评论
    */

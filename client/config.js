@@ -32,6 +32,8 @@ var config = {
         getComment: `${host}/weapp/comment/`,
         getCommentDetail: `${host}/weapp/commentdetail/`,
         getRandomComment: `${host}/weapp/randomcomment`,
+        getUsersComment: `${host}/weapp/userscomment/`,
+        getOneUsersComment: `${host}/weapp/oneuserscomment/`,
         // 写评论
         addComment: `${host}/weapp/addcomment`,
         //获得收藏

@@ -1,5 +1,33 @@
-/* client/pages/my/my.wxss */
-/* client/pages/movie/movie.wxss */
+/* 登录 */
+.user-card__info{
+  padding-bottom: 0
+}
+/* 导航条 */
+.swiper-tab {
+  border: 4rpx solid #eee;
+  width: 660rpx;
+  margin:30rpx auto;
+  position: relative;
+  height: 80rpx;
+  line-height: 80rpx;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  text-align: center;
+  font-size: 32rpx;
+}
+.swiper-tab-item {
+  background-color: #fff;
+  width: 50%;
+  /* height: 80rpx; */
+  justify-content: center;
+  align-items: center;
+  color:#555;
+}
+.swiper-active{
+  background-color: #ccc;
+  color: #fff;
+}
 /* 内容 */
 .content{
   width: 660rpx;

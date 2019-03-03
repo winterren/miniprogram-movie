@@ -2,13 +2,16 @@
 <!-- 背景图 -->
 <image class="bg" src="/images/bg.png"></image>
 <!-- 推荐内容 -->
-<view class="content">
+<view class="content" wx:if="{{!!movie}}">
   <image class="movie-post" src="{{movie.image}}" bindtap='onTapPost'></image>
   <view class="movie-title">{{movie.title}}</view>
   <view class="recommend" bindtap='onTapComment'>
     <image class="avatar" src="{{comment[0].avatar}}"></image>
     <view class="recommend__info">{{comment[0].username}} 给你推荐了一部电影</view>
   </view>
+</view>
+<view class="content" wx:else>
+  暂无任何推荐
 </view>
 <!-- 底部导航 -->
 <view class="foot-tab">

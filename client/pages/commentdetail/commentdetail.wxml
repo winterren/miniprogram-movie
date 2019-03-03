@@ -21,7 +21,8 @@
   <view class="operation">
     <view class="btn btn--comment-view" wx:if="{{isFavourite}}" bindtap='onTapCancelFavourite'>☆ 取消收藏</view>
     <view class="btn btn--comment-view" wx:else bindtap='onTapFavourite'>★ 收藏影评</view>
-    <view class="btn btn--comment-add" bindtap='onTapAddComment'>✎ 撰写影评</view>
+    <view class="btn btn--comment-add" wx:if="{{userscomment.length==0}}" bindtap='onTapAddComment'>✎ 撰写影评</view>
+    <view class="btn btn--comment-add" wx:else bindtap='onTapMyComment'>✎ 我的影评</view>
   </view>
 
 </view>

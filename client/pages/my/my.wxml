@@ -22,24 +22,67 @@
       <image class="user-card__info__img" src="{{userInfo.avatarUrl}}"></image>
       {{userInfo.nickName}}
     </view>
-    <view class="user-card__opt">我的收藏</view>
   </view>
-  <view class="content">
-    <view class="movie-list" wx:for="{{movieList}}" wx:key="index" data-id="{{item.comment_id}}" bindtap='onTapComment'>
-      <image class="movie-post" src='{{item.image}}'></image>
-      <view class="movie-info">
-        <view class="movie-info__title">{{item.title}}</view>
-        <view class="comment">
-          <view class="comment--text" wx:if="{{item.type==0}}">{{item.content}}</view>
-          <view class="comment--voice" wx:else>▶ {{item.duration}}s</view>
-        </view>
-        
-        <view class="comment--person">
-          <image class="avatar" src="{{item.avatar}}"></image>
-          <view class="comment__info">{{item.username}}</view>
-        </view>
-      </view>
-    </view>  
+<!-- 导航栏开始 -->
+<view class="swiper-tab">
+  <view wx:for="{{tabs}}" wx:key class="swiper-tab-item {{curIdx==index?'swiper-active':''}}" data-current="{{index}}" catchtap="clickTab">
+    <text>{{item}}</text>
   </view>
+</view>
+
+<swiper class="swiper_content" current="{{curIdx}}"   bindchange="swiperTab" style='height:{{scrollHeight}}px'>
+  <!-- 收藏栏 -->
+  <swiper-item>
+    <scroll-view class="scroll-y" scroll-y style='height:{{scrollHeight}}px'>
+      <!-- 我的收藏 -->
+        <view class="content">
+          
+          <view class="movie-list" wx:for="{{movieList}}" wx:key="index" data-id="{{item.comment_id}}" bindtap='onTapComment'>
+            <image class="movie-post" src='{{item.image}}'></image>
+            <view class="movie-info">
+              <view class="movie-info__title">{{item.title}}</view>
+              <view class="comment">
+                <view class="comment--text" wx:if="{{item.type==0}}">{{item.content}}</view>
+                <view class="comment--voice" wx:else>▶ {{item.duration}}s</view>
+              </view>
+              
+              <view class="comment--person">
+                <image class="avatar" src="{{item.avatar}}"></image>
+                <view class="comment__info">{{item.username}}</view>
+              </view>
+            </view>
+          </view>  
+        </view>
+    </scroll-view>
+  </swiper-item>
+  <!-- 发布栏 -->
+  <swiper-item>
+    <scroll-view class="scroll-y" scroll-y style='height:{{scrollHeight}}px'>
+       <!-- 我的评论 -->
+        <view class="content">
+         
+          <view class="movie-list" wx:for="{{userscomment}}" wx:key="index" data-id="{{item.comment_id}}" bindtap='onTapComment'>
+            <image class="movie-post" src='{{item.image}}'></image>
+            <view class="movie-info">
+              <view class="movie-info__title">{{item.title}}</view>
+              <view class="comment">
+                <view class="comment--text" wx:if="{{item.type==0}}">{{item.content}}</view>
+                <view class="comment--voice" wx:else>▶ {{item.duration}}s</view>
+              </view>
+              
+              <view class="comment--person">
+                <image class="avatar" src="{{item.avatar}}"></image>
+                <view class="comment__info">{{item.username}}</view>
+              </view>
+            </view>
+          </view>  
+        </view>
+    </scroll-view>
+  </swiper-item>
+</swiper>
+
+  
+
+ 
 
 </block>

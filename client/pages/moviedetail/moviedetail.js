@@ -1,5 +1,6 @@
 const qcloud = require('../../vendor/wafer2-client-sdk/index.js');
 const config = require('../../config.js');
+const app = getApp();
 Page({
 
   /**
@@ -7,7 +8,8 @@ Page({
    */
   data: {
     movie: {},
-    test: 'testsuc'
+    test: 'testsuc',
+    userscomment:[]
   },
 
   /**
@@ -15,6 +17,60 @@ Page({
    */
   onLoad: function (options) {
     this.getMovieDetail(options.id);
+
+    // 登录
+    app.checkSession({
+      success: (userInfo) => {
+        console.log('1')
+      },
+      error: (err) => {
+        console.log(err)
+      }
+    });
+    qcloud.setLoginUrl(config.service.loginUrl);
+    qcloud.login({
+      success: res => {
+        this.setData({
+          userInfo: res
+        })
+        // 查看是否被评论过
+        this.checkUsersComment(this.data.movie.id)
+      },
+      fail: res => {
+        console.log('fail');
+        console.log(res);
+      }
+    })
+  },
+
+  // 查看用户是否对该电影有过评价
+  checkUsersComment(id) {
+    qcloud.request({
+      url: config.service.getUsersComment + id,
+      login: true,
+      success: (res) => {
+        if (!res.data.code) {
+          this.setData({
+            userscomment: res.data.data
+          })
+          console.log(res)
+          console.log(this.data.userscomment.length);
+        } else {
+          console.log(res);
+        }
+      },
+      fail: function (err) {
+        console.log(err);
+      },
+    });
+  },
+  // 跳转到我的影评
+  onTapMyComment: function () {
+    console.log(this.data.userscomment)
+    console.log(!this.data.userscomment)
+    wx.navigateTo({
+      url: '../commentdetail/commentdetail?commentid=' + this.data.userscomment[0].comment_id,
+    })
   },
 
   // 获得单个电影
@@ -58,6 +114,13 @@ Page({
   },
   // 添加评论
   onTapAddComment: function(res) {
+    
+    // if (this.data.userscomment.length>0){
+    //   wx.showToast({
+    //     title: '已经评论过啦',
+    //   })
+    //   return 0;
+    // }
     wx.showActionSheet({
       itemList: ['文字', '语音'], //0,1
       success:(res)=>{
@@ -69,57 +132,7 @@ Page({
         console.log(res.errMsg)
       }
     })
-    // console.log('tapped')
-    // wx.navigateTo({
-    //   url: '../addcomment/addcomment?id=' + this.data.movie.id
-    // })
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
 
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
+ 
 })

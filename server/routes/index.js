@@ -42,6 +42,10 @@ router.get('/comment/:id', controllers.comment.comment)
 router.get('/commentdetail/:id', controllers.comment.commentdetail)
 // 获得随机评论
 router.get('/randomcomment', controllers.comment.randomcomment)
+// 获得指定电影和用户的评论
+router.get('/userscomment/:id', validationMiddleware, controllers.comment.userscomment)
+// 获得指定用户的评论
+router.get('/oneuserscomment', validationMiddleware, controllers.comment.oneuserscomment)
 // 添加评论
 router.put('/addcomment', validationMiddleware, controllers.comment.add)
 // 获得收藏
